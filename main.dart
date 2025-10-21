@@ -54,7 +54,7 @@ void main() async {
   print(venvPath);
   String command = """
 cd $odooPath  & source $venvPath & python $odooPath/odoo-bin -c $odooPath/odoo.conf
-""";
+"""; 
 
   var process = await Process.start(
     "bash",
