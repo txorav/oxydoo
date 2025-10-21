@@ -11,3 +11,7 @@ this tool is the way to go odoo dev tool to streamline your dev with quick refre
 - [ ] Quick Refresh
 - [ ] Hard Refresh 
 - [ ] support for Windows and MacOSX
+  
+
+# Free Palestine 
+Please spread the matter and support it with what you can do !!!
