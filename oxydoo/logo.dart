@@ -1,11 +1,5 @@
-import "dart:convert";
-import "dart:core";
-import "dart:io";
-
-import "letix.dart";
-
-main() async {
-  print("""
+class Logo {
+  dynamic logo = """
 ------------------------------------------Oxydoo is here------------------------------------------                                                                                    
                                          .:-==+*****++==-..                                         
                                     ..-+***##########*******+-..                                    
@@ -39,76 +33,6 @@ main() async {
                                     ..-*#%%%%%%%%%%%%%%%%%##*-..                                    
                                          .:=++*##%%##*++=:.       
 -------------------------------------------------------------------------------------------------- 
---------------------------------------------------------------------------------------------------                                                                                                                                     
-""");
-  print("Oxydoo Key Commands :\n" + "r Quick Refresh\n" + "h Hard Refresh\n");
-  // for(int i =0;i < 10000; i++){
-  //   runProcess("top", [""]);
-  // }
-  Letix letixMachine = Letix();
-  List content = await letixMachine.letixEngine(File("conf.lex"));
-  print(content[2][7]);
-  String odooPath = content[2][content[2].lastIndexOf("ODOO_PATH") + 2];
-  String venvPath = content[2][content[2].lastIndexOf("VENV_PATH") + 2];
-  print(odooPath);
-  print(venvPath);
-  String command =
-      """
-cd $odooPath  & source $venvPath & python $odooPath/odoo-bin -c $odooPath/odoo.conf
-""";
-
-  var process = await Process.start(
-    "bash",
-    ["-c", command],
-    runInShell: false,
-    mode: ProcessStartMode.inheritStdio,
-  );
-  while (true) {
-    var flag = stdin.readLineSync();
-    print("you write this shit $flag");
-    if (flag == "q") {
-      print("Quiting ... See you next time");
-      await process.kill();
-      return 0;
-    } else if (flag == "l") {
-      print("Launching Odoo ....");
-      try {
-        await Process.start(
-          "bash",
-          ["-c", command],
-          runInShell: true,
-          mode: ProcessStartMode.inheritStdio,
-        );
-      } catch (e) {
-        print("error is ${e.toString()} ");
-      }
-      print("done");
-    } else if (flag == "r") {
-      print("refreshing odoo ....");
-      try {
-        await process.kill();
-        await Process.start(
-          "bash",
-          ["-c", command],
-          runInShell: true,
-          mode: ProcessStartMode.inheritStdio,
-        );
-      } catch (e) {
-        print("error is ${e.toString()} ");
-      }
-      print("done");
-    } else if (flag == "R") {
-      try {
-        await process.kill();
-        await Process.start(
-          "bash",
-          ["-c", command],
-          runInShell: true,
-          mode: ProcessStartMode.inheritStdio,
-        );
-      } catch (e) {
-        print("error is ${e.toString()} ");
-      }
-    }
-  }
+--------------------------------------------------------------------------------------------------    
+"""; 
 }
