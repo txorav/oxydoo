@@ -7,6 +7,7 @@ this tool is the way to go odoo dev tool to streamline your dev with quick refre
 1. Quick Refresh
 2. Hard Refresh
 
+
 ## TODO :
 - [ ] Quick Refresh
 - [ ] Hard Refresh 
